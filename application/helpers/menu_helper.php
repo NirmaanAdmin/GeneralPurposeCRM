@@ -105,15 +105,15 @@ function app_init_admin_sidebar_menu_items()
         ]);
     }
 
-    if (staff_can('view',  'subscriptions') || staff_can('view_own',  'subscriptions')) {
-        $CI->app_menu->add_sidebar_menu_item('subscriptions', [
-            'name'     => _l('subscriptions'),
-            'href'     => admin_url('subscriptions'),
-            'icon'     => 'fa fa-repeat',
-            'position' => 15,
-            'badge'    => [],
-        ]);
-    }
+    // if (staff_can('view',  'subscriptions') || staff_can('view_own',  'subscriptions')) {
+    //     $CI->app_menu->add_sidebar_menu_item('subscriptions', [
+    //         'name'     => _l('subscriptions'),
+    //         'href'     => admin_url('subscriptions'),
+    //         'icon'     => 'fa fa-repeat',
+    //         'position' => 15,
+    //         'badge'    => [],
+    //     ]);
+    // }
 
     if (staff_can('view',  'expenses') || staff_can('view_own',  'expenses')) {
         $CI->app_menu->add_sidebar_menu_item('expenses', [
@@ -125,15 +125,15 @@ function app_init_admin_sidebar_menu_items()
         ]);
     }
 
-    if (staff_can('view',  'contracts') || staff_can('view_own',  'contracts')) {
-        $CI->app_menu->add_sidebar_menu_item('contracts', [
-            'name'     => _l('contracts'),
-            'href'     => admin_url('contracts'),
-            'icon'     => 'fa-regular fa-note-sticky',
-            'position' => 25,
-            'badge'    => [],
-        ]);
-    }
+    // if (staff_can('view',  'contracts') || staff_can('view_own',  'contracts')) {
+    //     $CI->app_menu->add_sidebar_menu_item('contracts', [
+    //         'name'     => _l('contracts'),
+    //         'href'     => admin_url('contracts'),
+    //         'icon'     => 'fa-regular fa-note-sticky',
+    //         'position' => 25,
+    //         'badge'    => [],
+    //     ]);
+    // }
 
     $CI->app_menu->add_sidebar_menu_item('projects', [
         'name'     => _l('projects'),
@@ -181,35 +181,35 @@ function app_init_admin_sidebar_menu_items()
         }
     }
 
-    if (is_staff_member()) {
-        $CI->app_menu->add_sidebar_menu_item('leads', [
-            'name'     => _l('als_leads'),
-            'href'     => admin_url('leads'),
-            'icon'     => 'fa-solid fa-crosshairs',
-            'position' => 45,
-            'badge'    => [],
-        ]);
-    }
+    // if (is_staff_member()) {
+    //     $CI->app_menu->add_sidebar_menu_item('leads', [
+    //         'name'     => _l('als_leads'),
+    //         'href'     => admin_url('leads'),
+    //         'icon'     => 'fa-solid fa-crosshairs',
+    //         'position' => 45,
+    //         'badge'    => [],
+    //     ]);
+    // }
 
-    if ((staff_can('view',  'estimate_request') || staff_can('view_own',  'estimate_request'))) {
-        $CI->app_menu->add_sidebar_menu_item('estimate_request', [
-            'name'     => _l('estimate_request'),
-            'href'     => admin_url('estimate_request'),
-            'position' => 46,
-            'icon'     => 'fa-regular fa-file',
-            'badge'    => [],
-        ]);
-    }
+    // if ((staff_can('view',  'estimate_request') || staff_can('view_own',  'estimate_request'))) {
+    //     $CI->app_menu->add_sidebar_menu_item('estimate_request', [
+    //         'name'     => _l('estimate_request'),
+    //         'href'     => admin_url('estimate_request'),
+    //         'position' => 46,
+    //         'icon'     => 'fa-regular fa-file',
+    //         'badge'    => [],
+    //     ]);
+    // }
 
-    if (staff_can('view',  'knowledge_base')) {
-        $CI->app_menu->add_sidebar_menu_item('knowledge-base', [
-            'name'     => _l('als_kb'),
-            'href'     => admin_url('knowledge_base'),
-            'icon'     => 'fa-regular fa-question-circle',
-            'position' => 50,
-            'badge'    => [],
-        ]);
-    }
+    // if (staff_can('view',  'knowledge_base')) {
+    //     $CI->app_menu->add_sidebar_menu_item('knowledge-base', [
+    //         'name'     => _l('als_kb'),
+    //         'href'     => admin_url('knowledge_base'),
+    //         'icon'     => 'fa-regular fa-question-circle',
+    //         'position' => 50,
+    //         'badge'    => [],
+    //     ]);
+    // }
 
     // Utilities
     $CI->app_menu->add_sidebar_menu_item('utilities', [
@@ -408,40 +408,40 @@ function app_init_admin_sidebar_menu_items()
             'badge'    => [],
         ]);
 
-        $CI->app_menu->add_setup_menu_item('leads', [
-            'collapse' => true,
-            'name'     => _l('acs_leads'),
-            'position' => 20,
-            'badge'    => [],
-        ]);
-        $CI->app_menu->add_setup_children_item('leads', [
-            'slug'     => 'leads-sources',
-            'name'     => _l('acs_leads_sources_submenu'),
-            'href'     => admin_url('leads/sources'),
-            'position' => 5,
-            'badge'    => [],
-        ]);
-        $CI->app_menu->add_setup_children_item('leads', [
-            'slug'     => 'leads-statuses',
-            'name'     => _l('acs_leads_statuses_submenu'),
-            'href'     => admin_url('leads/statuses'),
-            'position' => 10,
-            'badge'    => [],
-        ]);
-        $CI->app_menu->add_setup_children_item('leads', [
-            'slug'     => 'leads-email-integration',
-            'name'     => _l('leads_email_integration'),
-            'href'     => admin_url('leads/email_integration'),
-            'position' => 15,
-            'badge'    => [],
-        ]);
-        $CI->app_menu->add_setup_children_item('leads', [
-            'slug'     => 'web-to-lead',
-            'name'     => _l('web_to_lead'),
-            'href'     => admin_url('leads/forms'),
-            'position' => 20,
-            'badge'    => [],
-        ]);
+        // $CI->app_menu->add_setup_menu_item('leads', [
+        //     'collapse' => true,
+        //     'name'     => _l('acs_leads'),
+        //     'position' => 20,
+        //     'badge'    => [],
+        // ]);
+        // $CI->app_menu->add_setup_children_item('leads', [
+        //     'slug'     => 'leads-sources',
+        //     'name'     => _l('acs_leads_sources_submenu'),
+        //     'href'     => admin_url('leads/sources'),
+        //     'position' => 5,
+        //     'badge'    => [],
+        // ]);
+        // $CI->app_menu->add_setup_children_item('leads', [
+        //     'slug'     => 'leads-statuses',
+        //     'name'     => _l('acs_leads_statuses_submenu'),
+        //     'href'     => admin_url('leads/statuses'),
+        //     'position' => 10,
+        //     'badge'    => [],
+        // ]);
+        // $CI->app_menu->add_setup_children_item('leads', [
+        //     'slug'     => 'leads-email-integration',
+        //     'name'     => _l('leads_email_integration'),
+        //     'href'     => admin_url('leads/email_integration'),
+        //     'position' => 15,
+        //     'badge'    => [],
+        // ]);
+        // $CI->app_menu->add_setup_children_item('leads', [
+        //     'slug'     => 'web-to-lead',
+        //     'name'     => _l('web_to_lead'),
+        //     'href'     => admin_url('leads/forms'),
+        //     'position' => 20,
+        //     'badge'    => [],
+        // ]);
 
         $CI->app_menu->add_setup_menu_item('finance', [
             'collapse' => true,
@@ -478,45 +478,45 @@ function app_init_admin_sidebar_menu_items()
             'badge'    => [],
         ]);
 
-        $CI->app_menu->add_setup_menu_item('contracts', [
-            'collapse' => true,
-            'name'     => _l('acs_contracts'),
-            'position' => 30,
-            'badge'    => [],
-        ]);
-        $CI->app_menu->add_setup_children_item('contracts', [
-            'slug'     => 'contracts-types',
-            'name'     => _l('acs_contract_types'),
-            'href'     => admin_url('contracts/types'),
-            'position' => 5,
-            'badge'    => [],
-        ]);
+        // $CI->app_menu->add_setup_menu_item('contracts', [
+        //     'collapse' => true,
+        //     'name'     => _l('acs_contracts'),
+        //     'position' => 30,
+        //     'badge'    => [],
+        // ]);
+        // $CI->app_menu->add_setup_children_item('contracts', [
+        //     'slug'     => 'contracts-types',
+        //     'name'     => _l('acs_contract_types'),
+        //     'href'     => admin_url('contracts/types'),
+        //     'position' => 5,
+        //     'badge'    => [],
+        // ]);
 
         $modulesNeedsUpgrade = $CI->app_modules->number_of_modules_that_require_database_upgrade();
 
-        $CI->app_menu->add_setup_menu_item('modules', [
-            'href'     => admin_url('modules'),
-            'name'     => _l('modules'),
-            'position' => 35,
-            'badge'    => [
-                'value' => $modulesNeedsUpgrade > 0 ? $modulesNeedsUpgrade : null,
-                'type' => 'warning',
-            ],
-        ]);
+        // $CI->app_menu->add_setup_menu_item('modules', [
+        //     'href'     => admin_url('modules'),
+        //     'name'     => _l('modules'),
+        //     'position' => 35,
+        //     'badge'    => [
+        //         'value' => $modulesNeedsUpgrade > 0 ? $modulesNeedsUpgrade : null,
+        //         'type' => 'warning',
+        //     ],
+        // ]);
 
-        $CI->app_menu->add_setup_menu_item('custom-fields', [
-            'href'     => admin_url('custom_fields'),
-            'name'     => _l('asc_custom_fields'),
-            'position' => 45,
-            'badge'    => [],
-        ]);
+        // $CI->app_menu->add_setup_menu_item('custom-fields', [
+        //     'href'     => admin_url('custom_fields'),
+        //     'name'     => _l('asc_custom_fields'),
+        //     'position' => 45,
+        //     'badge'    => [],
+        // ]);
 
-        $CI->app_menu->add_setup_menu_item('gdpr', [
-            'href'     => admin_url('gdpr'),
-            'name'     => _l('gdpr_short'),
-            'position' => 50,
-            'badge'    => [],
-        ]);
+        // $CI->app_menu->add_setup_menu_item('gdpr', [
+        //     'href'     => admin_url('gdpr'),
+        //     'name'     => _l('gdpr_short'),
+        //     'position' => 50,
+        //     'badge'    => [],
+        // ]);
 
         $CI->app_menu->add_setup_menu_item('roles', [
             'href'     => admin_url('roles'),
@@ -550,28 +550,28 @@ function app_init_admin_sidebar_menu_items()
         ]);
     }
 
-    if (staff_can('view',  'settings')) {
-        $CI->app_menu->add_setup_menu_item('estimate_request', [
-            'collapse' => true,
-            'name'     => _l('acs_estimate_request'),
-            'position' => 34,
-            'badge'    => [],
-        ]);
-    }
+    // if (staff_can('view',  'settings')) {
+    //     $CI->app_menu->add_setup_menu_item('estimate_request', [
+    //         'collapse' => true,
+    //         'name'     => _l('acs_estimate_request'),
+    //         'position' => 34,
+    //         'badge'    => [],
+    //     ]);
+    // }
 
-    $CI->app_menu->add_setup_children_item('estimate_request', [
-        'slug'     => 'estimate-request-forms',
-        'name'     => _l('acs_estimate_request_forms'),
-        'href'     => admin_url('estimate_request/forms'),
-        'position' => 5,
-        'badge'    => [],
-    ]);
+    // $CI->app_menu->add_setup_children_item('estimate_request', [
+    //     'slug'     => 'estimate-request-forms',
+    //     'name'     => _l('acs_estimate_request_forms'),
+    //     'href'     => admin_url('estimate_request/forms'),
+    //     'position' => 5,
+    //     'badge'    => [],
+    // ]);
 
-    $CI->app_menu->add_setup_children_item('estimate_request', [
-        'slug'     => 'estimate-request-statuses',
-        'name'     => _l('acs_estimate_request_statuses_submenu'),
-        'href'     => admin_url('estimate_request/statuses'),
-        'position' => 10,
-        'badge'    => [],
-    ]);
+    // $CI->app_menu->add_setup_children_item('estimate_request', [
+    //     'slug'     => 'estimate-request-statuses',
+    //     'name'     => _l('acs_estimate_request_statuses_submenu'),
+    //     'href'     => admin_url('estimate_request/statuses'),
+    //     'position' => 10,
+    //     'badge'    => [],
+    // ]);
 }
