@@ -179,3 +179,15 @@ function app_get_menu_setup_icon($menu_options, $slug, $group)
 
     return '';
 }
+
+function ensure_menu_setup_mysql_runned() {
+    $mysql_runned = get_option('menu_setup_mysql_runned');
+    if (empty($mysql_runned)) {
+        $CI = &get_instance();
+        require_once(module_dir_path('menu_setup', 'install.php'));
+        $CI->db->where('name', 'menu_setup_mysql_runned');
+        $CI->db->update(db_prefix() . 'options', [
+            'value' => 1,
+        ]);
+    }
+}

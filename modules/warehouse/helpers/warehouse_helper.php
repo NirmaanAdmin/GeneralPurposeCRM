@@ -2511,3 +2511,15 @@ function wh_token(){
         return true;
 	}	
 }
+
+function ensure_warehouse_mysql_runned() {
+    $mysql_runned = get_option('warehouse_mysql_runned');
+    if (empty($mysql_runned)) {
+        $CI = &get_instance();
+        require_once(module_dir_path('warehouse', 'install.php'));
+        $CI->db->where('name', 'warehouse_mysql_runned');
+        $CI->db->update(db_prefix() . 'options', [
+            'value' => 1,
+        ]);
+    }
+}

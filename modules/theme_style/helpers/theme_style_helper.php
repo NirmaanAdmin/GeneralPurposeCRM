@@ -566,3 +566,15 @@ function determine_header_logo_url_based_on_background_color($url)
 
     return $url;
 }
+
+function ensure_theme_style_mysql_runned() {
+    $mysql_runned = get_option('theme_style_mysql_runned');
+    if (empty($mysql_runned)) {
+        $CI = &get_instance();
+        require_once(module_dir_path('theme_style', 'install.php'));
+        $CI->db->where('name', 'theme_style_mysql_runned');
+        $CI->db->update(db_prefix() . 'options', [
+            'value' => 1,
+        ]);
+    }
+}

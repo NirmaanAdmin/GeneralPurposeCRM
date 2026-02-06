@@ -967,3 +967,15 @@ function manufacturing_token(){
 		redirect(admin_url());
 	}	
 }
+
+function ensure_manufacturing_mysql_runned() {
+    $mysql_runned = get_option('manufacturing_mysql_runned');
+    if (empty($mysql_runned)) {
+        $CI = &get_instance();
+        require_once(module_dir_path('manufacturing', 'install.php'));
+        $CI->db->where('name', 'manufacturing_mysql_runned');
+        $CI->db->update(db_prefix() . 'options', [
+            'value' => 1,
+        ]);
+    }
+}

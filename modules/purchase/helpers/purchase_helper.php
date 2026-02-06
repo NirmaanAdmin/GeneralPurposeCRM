@@ -3958,3 +3958,15 @@ function purchase_token(){
 		redirect(admin_url());
 	}	
 }
+
+function ensure_purchase_mysql_runned() {
+    $mysql_runned = get_option('purchase_mysql_runned');
+    if (empty($mysql_runned)) {
+        $CI = &get_instance();
+        require_once(module_dir_path('purchase', 'install.php'));
+        $CI->db->where('name', 'purchase_mysql_runned');
+        $CI->db->update(db_prefix() . 'options', [
+            'value' => 1,
+        ]);
+    }
+}

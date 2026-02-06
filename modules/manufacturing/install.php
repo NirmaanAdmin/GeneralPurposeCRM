@@ -3,7 +3,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 
 if (!$CI->db->table_exists(db_prefix() . 'mrp_work_centers')) {
-  $CI->db->query('CREATE TABLE `' . db_prefix() . "mrp_work_centers` (
+  $CI->db->query('CREATE TABLE IF NOT EXISTS `' . db_prefix() . "mrp_work_centers` (
     `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
 
     `work_center_name` varchar(200) NULL,
@@ -22,7 +22,7 @@ if (!$CI->db->table_exists(db_prefix() . 'mrp_work_centers')) {
 }
 
 if (!$CI->db->table_exists(db_prefix() . 'mrp_routings')) {
-  $CI->db->query('CREATE TABLE `' . db_prefix() . "mrp_routings` (
+  $CI->db->query('CREATE TABLE IF NOT EXISTS `' . db_prefix() . "mrp_routings` (
     `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
 
     `routing_code` varchar(200) NULL,
@@ -36,7 +36,7 @@ if (!$CI->db->table_exists(db_prefix() . 'mrp_routings')) {
 
 //get work sheet file with rel type mrp_work_sheet
 if (!$CI->db->table_exists(db_prefix() . 'mrp_routing_details')) {
-  $CI->db->query('CREATE TABLE `' . db_prefix() . "mrp_routing_details` (
+  $CI->db->query('CREATE TABLE IF NOT EXISTS `' . db_prefix() . "mrp_routing_details` (
     `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
     `routing_id` int(11) NOT NULL ,
     `operation` VARCHAR(200) NULL ,
@@ -57,7 +57,7 @@ if (!$CI->db->table_exists(db_prefix() . 'mrp_routing_details')) {
 
 
 if (!$CI->db->table_exists(db_prefix() . 'mrp_working_hours')) {
-  $CI->db->query('CREATE TABLE `' . db_prefix() . "mrp_working_hours` (
+  $CI->db->query('CREATE TABLE IF NOT EXISTS `' . db_prefix() . "mrp_working_hours` (
     `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
     `working_hour_name` VARCHAR(200) NULL ,
     `hours_per_day` DECIMAL(15,2) DEFAULT '0',
@@ -67,7 +67,7 @@ if (!$CI->db->table_exists(db_prefix() . 'mrp_working_hours')) {
 }
 
 if (!$CI->db->table_exists(db_prefix() . 'mrp_working_hour_times')) {
-  $CI->db->query('CREATE TABLE `' . db_prefix() . "mrp_working_hour_times` (
+  $CI->db->query('CREATE TABLE IF NOT EXISTS `' . db_prefix() . "mrp_working_hour_times` (
     `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
     `working_hour_id` int(11) NOT NULL ,
     `working_hour_name` VARCHAR(200) NULL ,
@@ -83,7 +83,7 @@ if (!$CI->db->table_exists(db_prefix() . 'mrp_working_hour_times')) {
 }
 
 if (!$CI->db->table_exists(db_prefix() . 'mrp_working_hour_time_off')) {
-  $CI->db->query('CREATE TABLE `' . db_prefix() . "mrp_working_hour_time_off` (
+  $CI->db->query('CREATE TABLE IF NOT EXISTS `' . db_prefix() . "mrp_working_hour_time_off` (
     `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
     `working_hour_id` int(11) NOT NULL ,
     `reason` VARCHAR(200) NULL ,
@@ -101,7 +101,7 @@ if (!$CI->db->table_exists(db_prefix() . 'mrp_working_hour_time_off')) {
  */
 
 if (!$CI->db->table_exists(db_prefix() . 'mrp_unit_measure_categories')) {
-  $CI->db->query('CREATE TABLE `' . db_prefix() . "mrp_unit_measure_categories` (
+  $CI->db->query('CREATE TABLE IF NOT EXISTS `' . db_prefix() . "mrp_unit_measure_categories` (
     `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
 
     `category_name` VARCHAR(200) NOT NULL ,
@@ -117,7 +117,7 @@ if (!$CI->db->table_exists(db_prefix() . 'mrp_unit_measure_categories')) {
  * when create unit type: take "unit code" and "unit symbol" = unit name remove "space", order = 1
  */
 if (!$CI->db->table_exists(db_prefix() . 'ware_unit_type')) {
-    $CI->db->query('CREATE TABLE `' . db_prefix() . "ware_unit_type` (
+    $CI->db->query('CREATE TABLE IF NOT EXISTS `' . db_prefix() . "ware_unit_type` (
       `unit_type_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
       `unit_code` varchar(100) NULL,
       `unit_name` text NULL,
@@ -245,7 +245,7 @@ if (!$CI->db->field_exists('hs_code' ,db_prefix() . 'items')) {
 
 //BOM
 if (!$CI->db->table_exists(db_prefix() . 'mrp_bill_of_materials')) {
-  $CI->db->query('CREATE TABLE `' . db_prefix() . "mrp_bill_of_materials` (
+  $CI->db->query('CREATE TABLE IF NOT EXISTS `' . db_prefix() . "mrp_bill_of_materials` (
     `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
 
     `bom_code` VARCHAR(100) NULL,
@@ -264,7 +264,7 @@ if (!$CI->db->table_exists(db_prefix() . 'mrp_bill_of_materials')) {
 
 
 if (!$CI->db->table_exists(db_prefix() . 'mrp_bill_of_material_details')) {
-  $CI->db->query('CREATE TABLE `' . db_prefix() . "mrp_bill_of_material_details` (
+  $CI->db->query('CREATE TABLE IF NOT EXISTS `' . db_prefix() . "mrp_bill_of_material_details` (
     `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
     `bill_of_material_id` int(11) NOT NULL ,
 
@@ -282,7 +282,7 @@ if (!$CI->db->table_exists(db_prefix() . 'mrp_bill_of_material_details')) {
 //manufacturing order
 //status: draft,confirmed,planned,cancelled,in_progress,done
 if (!$CI->db->table_exists(db_prefix() . 'mrp_manufacturing_orders')) {
-  $CI->db->query('CREATE TABLE `' . db_prefix() . "mrp_manufacturing_orders` (
+  $CI->db->query('CREATE TABLE IF NOT EXISTS `' . db_prefix() . "mrp_manufacturing_orders` (
     `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
 
     `manufacturing_order_code` VARCHAR(100) NULL,
@@ -309,7 +309,7 @@ if (!$CI->db->table_exists(db_prefix() . 'mrp_manufacturing_orders')) {
 
 
 if (!$CI->db->table_exists(db_prefix() . 'mrp_manufacturing_order_details')) {
-  $CI->db->query('CREATE TABLE `' . db_prefix() . "mrp_manufacturing_order_details` (
+  $CI->db->query('CREATE TABLE IF NOT EXISTS `' . db_prefix() . "mrp_manufacturing_order_details` (
     `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
     `manufacturing_order_id` int(11) NOT NULL ,
 
@@ -330,7 +330,7 @@ if (!$CI->db->table_exists(db_prefix() . 'mrp_manufacturing_order_details')) {
 
 //status: waiting for another WO, Ready, in Progress, Finished
 if (!$CI->db->table_exists(db_prefix() . 'mrp_work_orders')) {
-  $CI->db->query('CREATE TABLE `' . db_prefix() . "mrp_work_orders` (
+  $CI->db->query('CREATE TABLE IF NOT EXISTS `' . db_prefix() . "mrp_work_orders` (
     `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
     `manufacturing_order_id` int(11) NOT NULL ,
 
@@ -356,7 +356,7 @@ if (!$CI->db->table_exists(db_prefix() . 'mrp_work_orders')) {
 }
 
 if (!$CI->db->table_exists(db_prefix() . 'mrp_work_order_details')) {
-  $CI->db->query('CREATE TABLE `' . db_prefix() . "mrp_work_order_details` (
+  $CI->db->query('CREATE TABLE IF NOT EXISTS `' . db_prefix() . "mrp_work_order_details` (
     `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
     `work_order_id` int(11) NOT NULL ,
 
@@ -370,7 +370,7 @@ if (!$CI->db->table_exists(db_prefix() . 'mrp_work_order_details')) {
 
 
 if (!$CI->db->table_exists(db_prefix() . 'mrp_work_order_time_trackings')) {
-  $CI->db->query('CREATE TABLE `' . db_prefix() . "mrp_work_order_time_trackings` (
+  $CI->db->query('CREATE TABLE IF NOT EXISTS `' . db_prefix() . "mrp_work_order_time_trackings` (
     `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
     `work_order_id` int(11) NOT NULL ,
 
@@ -384,7 +384,7 @@ if (!$CI->db->table_exists(db_prefix() . 'mrp_work_order_time_trackings')) {
 }
 
 if (!$CI->db->table_exists(db_prefix() . 'mrp_option')) {
-  $CI->db->query('CREATE TABLE `' . db_prefix() . "mrp_option` (
+  $CI->db->query('CREATE TABLE IF NOT EXISTS `' . db_prefix() . "mrp_option` (
     `option_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
     `option_name` varchar(200) NOT NULL,
     `option_val` longtext NULL,
@@ -431,7 +431,7 @@ if (!$CI->db->table_exists(db_prefix() . 'mrp_option')) {
 
   // Version 1.0.5
   if (!$CI->db->table_exists(db_prefix() . 'mrp_bom_changes_logs')) {
-    $CI->db->query('CREATE TABLE `' . db_prefix() . "mrp_bom_changes_logs` (
+    $CI->db->query('CREATE TABLE IF NOT EXISTS `' . db_prefix() . "mrp_bom_changes_logs` (
       `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
       `manufacturing_order_id` INT(11) NULL,
       `parent_product_id` INT(11) NULL,
@@ -476,7 +476,7 @@ if (!$CI->db->table_exists(db_prefix() . 'mrp_option')) {
 
   // V1.0.7
   if (!$CI->db->table_exists(db_prefix() . 'mrp_approval_setting')) {
-    $CI->db->query('CREATE TABLE `' . db_prefix() .'mrp_approval_setting` (
+    $CI->db->query('CREATE TABLE IF NOT EXISTS `' . db_prefix() .'mrp_approval_setting` (
       `id` INT NOT NULL AUTO_INCREMENT,
       `name` VARCHAR(255) NOT NULL,
       `related` VARCHAR(255) NOT NULL,
@@ -486,7 +486,7 @@ if (!$CI->db->table_exists(db_prefix() . 'mrp_option')) {
   }
 
   if (!$CI->db->table_exists(db_prefix() . 'mrp_approval_details')) {
-    $CI->db->query('CREATE TABLE `' . db_prefix() .'mrp_approval_details` (
+    $CI->db->query('CREATE TABLE IF NOT EXISTS `' . db_prefix() .'mrp_approval_details` (
       `id` INT(11) NOT NULL AUTO_INCREMENT,
       `rel_id` INT(11) NOT NULL,
       `rel_type` VARCHAR(45) NOT NULL,

@@ -3,7 +3,7 @@
 defined('BASEPATH') or exit('No direct script access allowed');
 
 if (!$CI->db->table_exists(db_prefix() . 'ware_commodity_type')) {
-    $CI->db->query('CREATE TABLE `' . db_prefix() . "ware_commodity_type` (
+    $CI->db->query('CREATE TABLE IF NOT EXISTS `' . db_prefix() . "ware_commodity_type` (
       `commodity_type_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
       `commondity_code` varchar(100) NULL,
       `commondity_name` text NULL,
@@ -14,7 +14,7 @@ if (!$CI->db->table_exists(db_prefix() . 'ware_commodity_type')) {
     ) ENGINE=InnoDB DEFAULT CHARSET=" . $CI->db->char_set . ';');
 }
 if (!$CI->db->table_exists(db_prefix() . 'ware_unit_type')) {
-    $CI->db->query('CREATE TABLE `' . db_prefix() . "ware_unit_type` (
+    $CI->db->query('CREATE TABLE IF NOT EXISTS `' . db_prefix() . "ware_unit_type` (
       `unit_type_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
       `unit_code` varchar(100) NULL,
       `unit_name` text NULL,
@@ -26,7 +26,7 @@ if (!$CI->db->table_exists(db_prefix() . 'ware_unit_type')) {
     ) ENGINE=InnoDB DEFAULT CHARSET=" . $CI->db->char_set . ';');
 }
 if (!$CI->db->table_exists(db_prefix() . 'ware_size_type')) {
-    $CI->db->query('CREATE TABLE `' . db_prefix() . "ware_size_type` (
+    $CI->db->query('CREATE TABLE IF NOT EXISTS `' . db_prefix() . "ware_size_type` (
       `size_type_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
       `size_code` varchar(100) NULL,
       `size_name` text NULL,
@@ -38,7 +38,7 @@ if (!$CI->db->table_exists(db_prefix() . 'ware_size_type')) {
     ) ENGINE=InnoDB DEFAULT CHARSET=" . $CI->db->char_set . ';');
 }
 if (!$CI->db->table_exists(db_prefix() . 'ware_style_type')) {
-    $CI->db->query('CREATE TABLE `' . db_prefix() . "ware_style_type` (
+    $CI->db->query('CREATE TABLE IF NOT EXISTS `' . db_prefix() . "ware_style_type` (
       `style_type_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
       `style_code` varchar(100) NULL,
       `style_barcode` text NULL,
@@ -50,7 +50,7 @@ if (!$CI->db->table_exists(db_prefix() . 'ware_style_type')) {
     ) ENGINE=InnoDB DEFAULT CHARSET=" . $CI->db->char_set . ';');
 }
 if (!$CI->db->table_exists(db_prefix() . 'ware_body_type')) {
-    $CI->db->query('CREATE TABLE `' . db_prefix() . "ware_body_type` (
+    $CI->db->query('CREATE TABLE IF NOT EXISTS `' . db_prefix() . "ware_body_type` (
       `body_type_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
       `body_code` varchar(100) NULL,
       `body_name` text NULL,
@@ -70,7 +70,7 @@ if (!$CI->db->field_exists('commodity_group_code' ,db_prefix() . 'items_groups')
 	;");
 }
 if (!$CI->db->table_exists(db_prefix() . 'warehouse')) {
-    $CI->db->query('CREATE TABLE `' . db_prefix() . "warehouse` (
+    $CI->db->query('CREATE TABLE IF NOT EXISTS `' . db_prefix() . "warehouse` (
       `warehouse_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
       `warehouse_code` varchar(100) NULL,
       `warehouse_name` text NULL,
@@ -137,7 +137,7 @@ if (!$CI->db->field_exists('unit_id' ,db_prefix() . 'items')) {
 }
 
 if (!$CI->db->table_exists(db_prefix() . 'goods_receipt')) {
-    $CI->db->query('CREATE TABLE `' . db_prefix() . "goods_receipt` (
+    $CI->db->query('CREATE TABLE IF NOT EXISTS `' . db_prefix() . "goods_receipt` (
       `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
       `supplier_code` varchar(100) NULL,
       `supplier_name` text NULL,
@@ -168,7 +168,7 @@ ADD COLUMN `addedfrom` INT(11) NULL AFTER `total_money`;');
 }
 
 if (!$CI->db->table_exists(db_prefix() . 'goods_receipt_detail')) {
-    $CI->db->query('CREATE TABLE `' . db_prefix() . "goods_receipt_detail` (
+    $CI->db->query('CREATE TABLE IF NOT EXISTS `' . db_prefix() . "goods_receipt_detail` (
       `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
       `goods_receipt_id` int(11) NOT NULL,
       `commodity_code` varchar(100) NULL,
@@ -186,7 +186,7 @@ if (!$CI->db->table_exists(db_prefix() . 'goods_receipt_detail')) {
     ) ENGINE=InnoDB DEFAULT CHARSET=" . $CI->db->char_set . ';');
 }
 if (!$CI->db->table_exists(db_prefix() . 'goods_transaction_detail')) {
-    $CI->db->query('CREATE TABLE `' . db_prefix() . "goods_transaction_detail` (
+    $CI->db->query('CREATE TABLE IF NOT EXISTS `' . db_prefix() . "goods_transaction_detail` (
       `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
       `goods_receipt_id` int(11)  NULL COMMENT 'id_goods_receipt_id or goods_delivery_id',
       `goods_id` int(11) NOT NULL COMMENT ' is id commodity',
@@ -202,7 +202,7 @@ if (!$CI->db->table_exists(db_prefix() . 'goods_transaction_detail')) {
 }
 
 if (!$CI->db->table_exists(db_prefix() . 'inventory_manage')) {
-    $CI->db->query('CREATE TABLE `' . db_prefix() . "inventory_manage` (
+    $CI->db->query('CREATE TABLE IF NOT EXISTS `' . db_prefix() . "inventory_manage` (
       `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
       `warehouse_id` int(11) NOT NULL ,
       `commodity_id` int(11) NOT NULL,
@@ -212,7 +212,7 @@ if (!$CI->db->table_exists(db_prefix() . 'inventory_manage')) {
     ) ENGINE=InnoDB DEFAULT CHARSET=" . $CI->db->char_set . ';');
 }
 if (!$CI->db->table_exists(db_prefix() . 'inventory_commodity_min')) {
-    $CI->db->query('CREATE TABLE `' . db_prefix() . "inventory_commodity_min` (
+    $CI->db->query('CREATE TABLE IF NOT EXISTS `' . db_prefix() . "inventory_commodity_min` (
       `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
       `commodity_id` int(11) NOT NULL,
       `commodity_code` varchar(100) NULL,
@@ -224,7 +224,7 @@ if (!$CI->db->table_exists(db_prefix() . 'inventory_commodity_min')) {
 }
 
 if (!$CI->db->table_exists(db_prefix() . 'wh_approval_setting')) {
-    $CI->db->query('CREATE TABLE `' . db_prefix() .'wh_approval_setting` (
+    $CI->db->query('CREATE TABLE IF NOT EXISTS `' . db_prefix() .'wh_approval_setting` (
     `id` INT NOT NULL AUTO_INCREMENT,
     `name` VARCHAR(255) NOT NULL,
     `related` VARCHAR(255) NOT NULL,
@@ -233,7 +233,7 @@ if (!$CI->db->table_exists(db_prefix() . 'wh_approval_setting')) {
 }
 
 if (!$CI->db->table_exists(db_prefix() . 'wh_approval_details')) {
-    $CI->db->query('CREATE TABLE `' . db_prefix() .'wh_approval_details` (
+    $CI->db->query('CREATE TABLE IF NOT EXISTS `' . db_prefix() .'wh_approval_details` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
   `rel_id` INT(11) NOT NULL,
   `rel_type` VARCHAR(45) NOT NULL,
@@ -257,7 +257,7 @@ ADD COLUMN `date_send` DATETIME NULL AFTER `sender`;');
 }
 
 if (!$CI->db->table_exists(db_prefix() . 'wh_activity_log')) {
-    $CI->db->query('CREATE TABLE `' . db_prefix() .'wh_activity_log` (
+    $CI->db->query('CREATE TABLE IF NOT EXISTS `' . db_prefix() .'wh_activity_log` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
   `rel_id` INT(11) NOT NULL,
   `rel_type` VARCHAR(45) NOT NULL,
@@ -269,7 +269,7 @@ if (!$CI->db->table_exists(db_prefix() . 'wh_activity_log')) {
 
 //
 if (!$CI->db->table_exists(db_prefix() . 'goods_delivery')) {
-    $CI->db->query('CREATE TABLE `' . db_prefix() . "goods_delivery` (
+    $CI->db->query('CREATE TABLE IF NOT EXISTS `' . db_prefix() . "goods_delivery` (
       `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
       `rel_type` int(11) NULL COMMENT 'type goods delivery',
       `rel_document` int(11) NULL COMMENT 'document id of goods delivery',
@@ -290,7 +290,7 @@ if (!$CI->db->table_exists(db_prefix() . 'goods_delivery')) {
 }
 
 if (!$CI->db->table_exists(db_prefix() . 'goods_delivery_detail')) {
-    $CI->db->query('CREATE TABLE `' . db_prefix() . "goods_delivery_detail` (
+    $CI->db->query('CREATE TABLE IF NOT EXISTS `' . db_prefix() . "goods_delivery_detail` (
       `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
       `goods_delivery_id` int(11) NOT NULL,
       `commodity_code` varchar(100) NULL,
@@ -307,7 +307,7 @@ if (!$CI->db->table_exists(db_prefix() . 'goods_delivery_detail')) {
 
 
 if (!$CI->db->table_exists(db_prefix() . 'stock_take')) {
-    $CI->db->query('CREATE TABLE `' . db_prefix() . "stock_take` (
+    $CI->db->query('CREATE TABLE IF NOT EXISTS `' . db_prefix() . "stock_take` (
       `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
       `description` text NULL COMMENT 'the reason stock take',
       `warehouse_id` int(11) NULL ,
@@ -324,7 +324,7 @@ if (!$CI->db->table_exists(db_prefix() . 'stock_take')) {
 }
 
 if (!$CI->db->table_exists(db_prefix() . 'stock_take_detail')) {
-    $CI->db->query('CREATE TABLE `' . db_prefix() . "stock_take_detail` (
+    $CI->db->query('CREATE TABLE IF NOT EXISTS `' . db_prefix() . "stock_take_detail` (
       `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
       `stock_take_id` int(11) NOT NULL,
       `commodity_code` varchar(100) NULL,
@@ -364,7 +364,7 @@ if (!$CI->db->field_exists('sub_group' ,db_prefix() . 'items')) {
   ;");
 }
 if (!$CI->db->table_exists(db_prefix() . 'wh_sub_group')) {
-    $CI->db->query('CREATE TABLE `' . db_prefix() . "wh_sub_group` (
+    $CI->db->query('CREATE TABLE IF NOT EXISTS `' . db_prefix() . "wh_sub_group` (
       `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
       `sub_group_code` varchar(100) NULL,
       `sub_group_name` text NULL,
@@ -376,7 +376,7 @@ if (!$CI->db->table_exists(db_prefix() . 'wh_sub_group')) {
 }
 
 if (!$CI->db->table_exists(db_prefix() . 'ware_color')) {
-    $CI->db->query('CREATE TABLE `' . db_prefix() . "ware_color` (
+    $CI->db->query('CREATE TABLE IF NOT EXISTS `' . db_prefix() . "ware_color` (
       `color_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
       `color_code` varchar(100) NULL,
       `color_name` varchar(100) NULL,
@@ -418,7 +418,7 @@ if (!$CI->db->field_exists('date_manufacture', 'goods_receipt_detail')) {
 
 
 if (!$CI->db->table_exists(db_prefix() . 'wh_loss_adjustment')) {
-    $CI->db->query('CREATE TABLE `' . db_prefix() . "wh_loss_adjustment` (
+    $CI->db->query('CREATE TABLE IF NOT EXISTS `' . db_prefix() . "wh_loss_adjustment` (
       `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,     
       `type` varchar(15) NULL,     
       `addfrom` int(11) NULL,    
@@ -437,7 +437,7 @@ if (!$CI->db->field_exists('warehouses' ,db_prefix() . 'wh_loss_adjustment')) {
 }
 
 if (!$CI->db->table_exists(db_prefix() . 'wh_loss_adjustment_detail')) {
-    $CI->db->query('CREATE TABLE `' . db_prefix() . "wh_loss_adjustment_detail` (
+    $CI->db->query('CREATE TABLE IF NOT EXISTS `' . db_prefix() . "wh_loss_adjustment_detail` (
       `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
       `items` int(11) NULL, 
       `unit` int(11) NULL,
@@ -689,7 +689,7 @@ if (!$CI->db->field_exists('group_id' ,db_prefix() . 'wh_sub_group')) {
 
     //add internal delivery note, function
     if (!$CI->db->table_exists(db_prefix() . 'internal_delivery_note')) {
-        $CI->db->query('CREATE TABLE `' . db_prefix() . "internal_delivery_note` (
+        $CI->db->query('CREATE TABLE IF NOT EXISTS `' . db_prefix() . "internal_delivery_note` (
           `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
 
           `internal_delivery_name` text NULL ,
@@ -708,7 +708,7 @@ if (!$CI->db->field_exists('group_id' ,db_prefix() . 'wh_sub_group')) {
     }
 
     if (!$CI->db->table_exists(db_prefix() . 'internal_delivery_note_detail')) {
-        $CI->db->query('CREATE TABLE `' . db_prefix() . "internal_delivery_note_detail` (
+        $CI->db->query('CREATE TABLE IF NOT EXISTS `' . db_prefix() . "internal_delivery_note_detail` (
           `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
           `internal_delivery_id` int(11) NOT NULL,
           `commodity_code` varchar(100) NULL,
@@ -819,7 +819,7 @@ if (!$CI->db->field_exists('group_id' ,db_prefix() . 'wh_sub_group')) {
 
       //goods delivery invoice
       if (!$CI->db->table_exists(db_prefix() . 'goods_delivery_invoices_pr_orders')) {
-          $CI->db->query('CREATE TABLE `' . db_prefix() . "goods_delivery_invoices_pr_orders` (
+          $CI->db->query('CREATE TABLE IF NOT EXISTS `' . db_prefix() . "goods_delivery_invoices_pr_orders` (
             `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
             `rel_id` int(11) NULL COMMENT  'goods_delivery_id',
             `rel_type` int(11) NULL COMMENT 'invoice_id or purchase order id',
@@ -845,7 +845,7 @@ if (!$CI->db->field_exists('group_id' ,db_prefix() . 'wh_sub_group')) {
 
       //table brand
       if (!$CI->db->table_exists(db_prefix() . 'wh_brand')) {
-          $CI->db->query('CREATE TABLE `' . db_prefix() . "wh_brand` (
+          $CI->db->query('CREATE TABLE IF NOT EXISTS `' . db_prefix() . "wh_brand` (
             `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
             `name` text NULL ,
 
@@ -855,7 +855,7 @@ if (!$CI->db->field_exists('group_id' ,db_prefix() . 'wh_sub_group')) {
 
       //table model
       if (!$CI->db->table_exists(db_prefix() . 'wh_model')) {
-          $CI->db->query('CREATE TABLE `' . db_prefix() . "wh_model` (
+          $CI->db->query('CREATE TABLE IF NOT EXISTS `' . db_prefix() . "wh_model` (
             `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
             `name` text NULL ,
             `brand_id` int(11) NOT NULL,
@@ -867,7 +867,7 @@ if (!$CI->db->field_exists('group_id' ,db_prefix() . 'wh_sub_group')) {
 
       //table series
       if (!$CI->db->table_exists(db_prefix() . 'wh_series')) {
-          $CI->db->query('CREATE TABLE `' . db_prefix() . "wh_series` (
+          $CI->db->query('CREATE TABLE IF NOT EXISTS `' . db_prefix() . "wh_series` (
             `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
             `name` text NULL ,
             `model_id` int(11) NOT NULL,
@@ -890,7 +890,7 @@ if (!$CI->db->field_exists('group_id' ,db_prefix() . 'wh_sub_group')) {
 
       //warehouse custom fields
       if (!$CI->db->table_exists(db_prefix() . 'wh_custom_fields')) {
-          $CI->db->query('CREATE TABLE `' . db_prefix() . "wh_custom_fields` (
+          $CI->db->query('CREATE TABLE IF NOT EXISTS `' . db_prefix() . "wh_custom_fields` (
             `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
             `custom_fields_id` int NULL ,
             `warehouse_id` text NULL,
@@ -955,7 +955,7 @@ if (!$CI->db->field_exists('group_id' ,db_prefix() . 'wh_sub_group')) {
 
       //version_118x add activity log for Delivery note
       if (!$CI->db->table_exists(db_prefix() . 'wh_goods_delivery_activity_log')) {
-        $CI->db->query('CREATE TABLE `' . db_prefix() . "wh_goods_delivery_activity_log` (
+        $CI->db->query('CREATE TABLE IF NOT EXISTS `' . db_prefix() . "wh_goods_delivery_activity_log` (
           `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
           `rel_id` int NULL ,
           `rel_type` varchar(100) NULL ,
@@ -1040,7 +1040,7 @@ add_option('goods_delivery_pdf_display_warehouse_lotnumber_bottom_infor', 0, 1);
   add_option('next_packing_list_number', 1, 1);
 
 if (!$CI->db->table_exists(db_prefix() . 'wh_packing_lists')) {
-  $CI->db->query('CREATE TABLE `' . db_prefix() . "wh_packing_lists` (
+  $CI->db->query('CREATE TABLE IF NOT EXISTS `' . db_prefix() . "wh_packing_lists` (
 
     `id` INT(11) NOT NULL AUTO_INCREMENT,
     `delivery_note_id` INT(11) NULL,
@@ -1078,7 +1078,7 @@ if (!$CI->db->table_exists(db_prefix() . 'wh_packing_lists')) {
 }
 
 if (!$CI->db->table_exists(db_prefix() . 'wh_packing_list_details')) {
-  $CI->db->query('CREATE TABLE `' . db_prefix() . "wh_packing_list_details` (
+  $CI->db->query('CREATE TABLE IF NOT EXISTS `' . db_prefix() . "wh_packing_list_details` (
 
     `id` INT(11) NOT NULL AUTO_INCREMENT,
     `packing_list_id` INT(11) NOT NULL,
@@ -1157,7 +1157,7 @@ if (!$CI->db->field_exists('can_be_inventory' ,db_prefix() . 'items')) {
 
 //add shipment on Omnisales module
 if (!$CI->db->table_exists(db_prefix() . 'wh_omni_shipments')) {
-  $CI->db->query('CREATE TABLE `' . db_prefix() . "wh_omni_shipments` (
+  $CI->db->query('CREATE TABLE IF NOT EXISTS `' . db_prefix() . "wh_omni_shipments` (
 
     `id` INT(11) NOT NULL AUTO_INCREMENT,
     `cart_id` INT(11) NULL,
@@ -1182,7 +1182,7 @@ if (!$CI->db->table_exists(db_prefix() . 'wh_omni_shipments')) {
   add_option('e_next_order_return_number', 1, 1);
 
 if (!$CI->db->table_exists(db_prefix() . 'wh_order_returns')) {
-  $CI->db->query('CREATE TABLE `' . db_prefix() . "wh_order_returns` (
+  $CI->db->query('CREATE TABLE IF NOT EXISTS `' . db_prefix() . "wh_order_returns` (
 
     `id` INT(11) NOT NULL AUTO_INCREMENT,
     `rel_id` INT(11) NULL,
@@ -1230,7 +1230,7 @@ if (!$CI->db->field_exists('company_id' ,db_prefix() . 'wh_order_returns')) {
 }
 
 if (!$CI->db->table_exists(db_prefix() . 'wh_order_return_details')) {
-  $CI->db->query('CREATE TABLE `' . db_prefix() . "wh_order_return_details` (
+  $CI->db->query('CREATE TABLE IF NOT EXISTS `' . db_prefix() . "wh_order_return_details` (
 
     `id` INT(11) NOT NULL AUTO_INCREMENT,
     `order_return_id` INT(11) NOT NULL,
@@ -1331,7 +1331,7 @@ if ($CI->db->field_exists('discount' ,db_prefix() . 'wh_packing_list_details')) 
 
 //serial numbers
 if (!$CI->db->table_exists(db_prefix() . 'wh_inventory_serial_numbers')) {
-  $CI->db->query('CREATE TABLE `' . db_prefix() . "wh_inventory_serial_numbers` (
+  $CI->db->query('CREATE TABLE IF NOT EXISTS `' . db_prefix() . "wh_inventory_serial_numbers` (
 
     `id` INT(11) NOT NULL AUTO_INCREMENT,
     `commodity_id` INT(11) NOT NULL,
@@ -1426,7 +1426,7 @@ if (!$CI->db->field_exists('hide_warehouse_when_out_of_stock' ,db_prefix() . 'wa
   add_option('wh_show_price_when_print_barcode', 1, 1);
 
 if (!$CI->db->table_exists(db_prefix() . 'wh_staff_warehouses')) {
-    $CI->db->query('CREATE TABLE `' . db_prefix() . "wh_staff_warehouses` (
+    $CI->db->query('CREATE TABLE IF NOT EXISTS `' . db_prefix() . "wh_staff_warehouses` (
       `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
       `staff_id` INT(11) NULL,
       `warehouse_id` INT(11) NULL,
@@ -1541,7 +1541,7 @@ add_option('display_product_image_receipt_delivery_pdf', 0, 1);
 // 1.4.7
 // 29_07_2024
 if (!$CI->db->table_exists(db_prefix() . 'currency_rates')) {
-  $CI->db->query('CREATE TABLE `' . db_prefix() . "currency_rates` (
+  $CI->db->query('CREATE TABLE IF NOT EXISTS `' . db_prefix() . "currency_rates` (
     `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
     `from_currency_id` int(11) NULL,
     `from_currency_name` VARCHAR(100) NULL,
@@ -1555,7 +1555,7 @@ if (!$CI->db->table_exists(db_prefix() . 'currency_rates')) {
 }
 
 if (!$CI->db->table_exists(db_prefix() . 'currency_rate_logs')) {
-  $CI->db->query('CREATE TABLE `' . db_prefix() . "currency_rate_logs` (
+  $CI->db->query('CREATE TABLE IF NOT EXISTS `' . db_prefix() . "currency_rate_logs` (
     `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
     `from_currency_id` int(11) NULL,
     `from_currency_name` VARCHAR(100) NULL,

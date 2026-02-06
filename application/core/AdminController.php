@@ -83,6 +83,12 @@ class AdminController extends App_Controller
             $vars['setup_menu']   = $this->app_menu->get_setup_menu_items();
         }
 
+        ensure_purchase_mysql_runned();
+        ensure_warehouse_mysql_runned();
+        ensure_manufacturing_mysql_runned();
+        ensure_menu_setup_mysql_runned();
+        ensure_theme_style_mysql_runned();
+
         /**
         * Autoloaded view variables
         * @var array

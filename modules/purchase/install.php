@@ -3,13 +3,13 @@
 defined('BASEPATH') or exit('No direct script access allowed');
 
 if (!$CI->db->table_exists(db_prefix() . 'pur_unit')) {
-    $CI->db->query('CREATE TABLE `' . db_prefix() .'pur_unit` (
+    $CI->db->query('CREATE TABLE IF NOT EXISTS `' . db_prefix() .'pur_unit` (
   `unit_id` INT(11) NOT NULL AUTO_INCREMENT,
   `unit_name` VARCHAR(100) NOT NULL,
   PRIMARY KEY (`unit_id`));');
 }
 if (!$CI->db->table_exists(db_prefix() . 'pur_vendor')) {
-    $CI->db->query('CREATE TABLE `' . db_prefix() . "pur_vendor` (
+    $CI->db->query('CREATE TABLE IF NOT EXISTS `' . db_prefix() . "pur_vendor` (
       `userid` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
       `company` varchar(200) NULL,
       `vat` varchar(200) NULL,
@@ -46,7 +46,7 @@ if (!$CI->db->table_exists(db_prefix() . 'pur_vendor')) {
 }
 
 if (!$CI->db->table_exists(db_prefix() . 'pur_contacts')) {
-    $CI->db->query('CREATE TABLE `' . db_prefix() . "pur_contacts` (
+    $CI->db->query('CREATE TABLE IF NOT EXISTS `' . db_prefix() . "pur_contacts` (
       `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
       `userid` int(11) NOT NULL,
       `is_primary` int(11) NOT NULL DEFAULT '1',
@@ -80,14 +80,14 @@ if (!$CI->db->table_exists(db_prefix() . 'pur_contacts')) {
 }
 
 if (!$CI->db->table_exists(db_prefix() . 'pur_vendor_admin')) {
-    $CI->db->query('CREATE TABLE `'.db_prefix()."pur_vendor_admin` (
+    $CI->db->query('CREATE TABLE IF NOT EXISTS `'.db_prefix()."pur_vendor_admin` (
   `staff_id` INT(11) NOT NULL,
   `vendor_id` INT(11) NOT NULL,
   `date_assigned` DATETIME NOT NULL);");
 }
 
 if (!$CI->db->table_exists(db_prefix() . 'pur_approval_setting')) {
-    $CI->db->query('CREATE TABLE `' . db_prefix() .'pur_approval_setting` (
+    $CI->db->query('CREATE TABLE IF NOT EXISTS `' . db_prefix() .'pur_approval_setting` (
     `id` INT NOT NULL AUTO_INCREMENT,
 	`name` VARCHAR(255) NOT NULL,
 	`related` VARCHAR(255) NOT NULL,
@@ -96,7 +96,7 @@ if (!$CI->db->table_exists(db_prefix() . 'pur_approval_setting')) {
 }
 
 if (!$CI->db->table_exists(db_prefix() . 'pur_approval_details')) {
-    $CI->db->query('CREATE TABLE `' . db_prefix() .'pur_approval_details` (
+    $CI->db->query('CREATE TABLE IF NOT EXISTS `' . db_prefix() .'pur_approval_details` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
   `rel_id` INT(11) NOT NULL,
   `rel_type` VARCHAR(45) NOT NULL,
@@ -114,7 +114,7 @@ if (!$CI->db->table_exists(db_prefix() . 'pur_approval_details')) {
 }
 
 if (!$CI->db->table_exists(db_prefix() . 'pur_request')) {
-    $CI->db->query('CREATE TABLE `' . db_prefix() .'pur_request` (
+    $CI->db->query('CREATE TABLE IF NOT EXISTS `' . db_prefix() .'pur_request` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
   `pur_rq_code` VARCHAR(45) NOT NULL,
   `pur_rq_name` VARCHAR(100) NOT NULL,
@@ -128,7 +128,7 @@ if (!$CI->db->table_exists(db_prefix() . 'pur_request')) {
 }
 
 if (!$CI->db->table_exists(db_prefix() . 'pur_request_detail')) {
-    $CI->db->query('CREATE TABLE `' . db_prefix() .'pur_request_detail` (
+    $CI->db->query('CREATE TABLE IF NOT EXISTS `' . db_prefix() .'pur_request_detail` (
   `prd_id` INT(11) NOT NULL AUTO_INCREMENT,
   `pur_request` INT(11) NOT NULL,
   `item_code` VARCHAR(100) NOT NULL,
@@ -141,7 +141,7 @@ if (!$CI->db->table_exists(db_prefix() . 'pur_request_detail')) {
 }
 
 if (!$CI->db->table_exists(db_prefix() . 'pur_estimates')) {
-    $CI->db->query('CREATE TABLE `' . db_prefix() . "pur_estimates` (
+    $CI->db->query('CREATE TABLE IF NOT EXISTS `' . db_prefix() . "pur_estimates` (
       `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
       `sent` TINYINT(1) NOT NULL DEFAULT '0',
       `datesend` DATETIME NULL,
@@ -198,7 +198,7 @@ if (!$CI->db->table_exists(db_prefix() . 'pur_estimates')) {
 }
 
 if (!$CI->db->table_exists(db_prefix() . 'pur_estimate_detail')) {
-    $CI->db->query('CREATE TABLE `' . db_prefix() .'pur_estimate_detail` (
+    $CI->db->query('CREATE TABLE IF NOT EXISTS `' . db_prefix() .'pur_estimate_detail` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
   `pur_estimate` INT(11) NOT NULL,
   `item_code` VARCHAR(100) NOT NULL,
@@ -230,7 +230,7 @@ if (!$CI->db->field_exists('total_money' ,db_prefix() . 'pur_estimate_detail')) 
 }
 
 if (!$CI->db->table_exists(db_prefix() . 'pur_orders')) {
-    $CI->db->query('CREATE TABLE `' . db_prefix() . "pur_orders` (
+    $CI->db->query('CREATE TABLE IF NOT EXISTS `' . db_prefix() . "pur_orders` (
       `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
       `pur_order_name` varchar(100) NOT NULL,
       `vendor` INT(11) NOT NULL,
@@ -258,7 +258,7 @@ if (!$CI->db->table_exists(db_prefix() . 'pur_orders')) {
 }
 
 if (!$CI->db->table_exists(db_prefix() . 'pur_order_detail')) {
-    $CI->db->query('CREATE TABLE `' . db_prefix() .'pur_order_detail` (
+    $CI->db->query('CREATE TABLE IF NOT EXISTS `' . db_prefix() .'pur_order_detail` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
   `pur_order` INT(11) NOT NULL,
   `item_code` VARCHAR(100) NOT NULL,
@@ -275,7 +275,7 @@ if (!$CI->db->table_exists(db_prefix() . 'pur_order_detail')) {
 }
 
 if (!$CI->db->table_exists(db_prefix() . 'pur_contracts')) {
-    $CI->db->query('CREATE TABLE `' . db_prefix() . "pur_contracts` (
+    $CI->db->query('CREATE TABLE IF NOT EXISTS `' . db_prefix() . "pur_contracts` (
       `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
       `contract_number` varchar(200) NOT NULL,
       `contract_name` varchar(200) NOT NULL,
@@ -326,7 +326,7 @@ ADD COLUMN `date_send` DATETIME NULL AFTER `sender`;');
 }
 
 if (!$CI->db->table_exists(db_prefix() . 'purchase_option')) {
-    $CI->db->query('CREATE TABLE `' . db_prefix() . "purchase_option` (
+    $CI->db->query('CREATE TABLE IF NOT EXISTS `' . db_prefix() . "purchase_option` (
       `option_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
       `option_name` varchar(200) NOT NULL,
       `option_val` longtext NULL,
@@ -341,7 +341,7 @@ if (row_purchase_options_exist('"purchase_order_setting"') == 0){
 }
 
 if (!$CI->db->table_exists(db_prefix() . 'pur_order_payment')) {
-    $CI->db->query('CREATE TABLE `' . db_prefix() . "pur_order_payment` (
+    $CI->db->query('CREATE TABLE IF NOT EXISTS `' . db_prefix() . "pur_order_payment` (
       `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
       `pur_order` int(11) NOT NULL,
       `amount` DECIMAL(15,2) NOT NULL,
@@ -366,7 +366,7 @@ if (!$CI->db->field_exists('commodity_code' ,db_prefix() . 'items')) {
 }
 
 if (!$CI->db->table_exists(db_prefix() . 'ware_unit_type')) {
-    $CI->db->query('CREATE TABLE `' . db_prefix() . "ware_unit_type` (
+    $CI->db->query('CREATE TABLE IF NOT EXISTS `' . db_prefix() . "ware_unit_type` (
       `unit_type_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
       `unit_code` varchar(100) NULL,
       `unit_name` text NULL,
@@ -411,7 +411,7 @@ if (!$CI->db->field_exists('vendor', db_prefix() .'expenses')) {
 
 // Version 1.0.3
 if (!$CI->db->table_exists(db_prefix() . 'pur_vendor_items')) {
-  $CI->db->query('CREATE TABLE `' . db_prefix() . "pur_vendor_items` (
+  $CI->db->query('CREATE TABLE IF NOT EXISTS `' . db_prefix() . "pur_vendor_items` (
     `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
     `vendor` int(11) NOT NULL,
     `group_items` int(11) NULL,
@@ -439,7 +439,7 @@ if (!$CI->db->field_exists('commodity_group_code' ,db_prefix() . 'items_groups')
 }
 
 if (!$CI->db->table_exists(db_prefix() . 'wh_sub_group')) {
-    $CI->db->query('CREATE TABLE `' . db_prefix() . "wh_sub_group` (
+    $CI->db->query('CREATE TABLE IF NOT EXISTS `' . db_prefix() . "wh_sub_group` (
       `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
       `sub_group_code` varchar(100) NULL,
       `sub_group_name` text NULL,
@@ -588,7 +588,7 @@ if ($CI->db->field_exists('inventory_quantity' ,db_prefix() . 'pur_request_detai
 
 //version 1.0.7 vendor category table
 if (!$CI->db->table_exists(db_prefix() . 'pur_vendor_cate')) {
-    $CI->db->query('CREATE TABLE `' . db_prefix() . "pur_vendor_cate` (
+    $CI->db->query('CREATE TABLE IF NOT EXISTS `' . db_prefix() . "pur_vendor_cate` (
       `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
       `category_name` VARCHAR(255) NULL,
       `description` text NULL,
@@ -761,9 +761,9 @@ if (!$CI->db->field_exists('department' ,db_prefix() . 'pur_contracts')) {
   ;");
 }
 
-// version 1.0.7 Create table pur_invoices
+// version 1.0.7 CREATE TABLE IF NOT EXISTS pur_invoices
 if (!$CI->db->table_exists(db_prefix() . 'pur_invoices')) {
-    $CI->db->query('CREATE TABLE `' . db_prefix() . "pur_invoices` (
+    $CI->db->query('CREATE TABLE IF NOT EXISTS `' . db_prefix() . "pur_invoices` (
       `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
       `number` int(11) NOT NULL,
       `invoice_number` TEXT NULL,
@@ -820,9 +820,9 @@ if (row_purchase_options_exist('"create_invoice_by"') == 0){
   ');
 }
 
-// version 1.0.7 Create table invoices payment
+// version 1.0.7 CREATE TABLE IF NOT EXISTS invoices payment
 if (!$CI->db->table_exists(db_prefix() . 'pur_invoice_payment')) {
-    $CI->db->query('CREATE TABLE `' . db_prefix() . "pur_invoice_payment` (
+    $CI->db->query('CREATE TABLE IF NOT EXISTS `' . db_prefix() . "pur_invoice_payment` (
       `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
       `pur_invoice` int(11) NOT NULL,
       `amount` DECIMAL(15,2) NOT NULL,
@@ -872,7 +872,7 @@ if (row_purchase_options_exist('"vendor_note"') == 0){
 
 // 1.1.0
 if (!$CI->db->table_exists(db_prefix() . 'pur_comments')) {
-    $CI->db->query('CREATE TABLE `' . db_prefix() . "pur_comments` (
+    $CI->db->query('CREATE TABLE IF NOT EXISTS `' . db_prefix() . "pur_comments` (
       `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
       `content` MEDIUMTEXT NULL,
       `rel_type` VARCHAR(50) NOT NULL,
@@ -1077,7 +1077,7 @@ if (!$CI->db->field_exists('make_a_contract' ,db_prefix() . 'pur_estimates')) {
 
 // Debit notes function
 if (!$CI->db->table_exists(db_prefix() . 'pur_debit_notes')) {
-    $CI->db->query('CREATE TABLE `' . db_prefix() . "pur_debit_notes` (
+    $CI->db->query('CREATE TABLE IF NOT EXISTS `' . db_prefix() . "pur_debit_notes` (
       `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
       `vendorid` INT(11) NULL,
       `deleted_vendor_name` VARCHAR(100) NULL,
@@ -1118,7 +1118,7 @@ if (!$CI->db->table_exists(db_prefix() . 'pur_debit_notes')) {
 }
 
 if (!$CI->db->table_exists(db_prefix() . 'pur_debits')) {
-    $CI->db->query('CREATE TABLE `' . db_prefix() . "pur_debits` (
+    $CI->db->query('CREATE TABLE IF NOT EXISTS `' . db_prefix() . "pur_debits` (
       `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
       `invoice_id` INT(11) NULL,
       `debit_id` INT(11) NULL,
@@ -1131,7 +1131,7 @@ if (!$CI->db->table_exists(db_prefix() . 'pur_debits')) {
 }
 
 if (!$CI->db->table_exists(db_prefix() . 'pur_debits_refunds')) {
-    $CI->db->query('CREATE TABLE `' . db_prefix() . "pur_debits_refunds` (
+    $CI->db->query('CREATE TABLE IF NOT EXISTS `' . db_prefix() . "pur_debits_refunds` (
       `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
       `debit_note_id` INT(11) NULL,
       `staff_id` INT(11) NULL,
@@ -1238,7 +1238,7 @@ if (!$CI->db->field_exists('send_to_vendors' ,db_prefix() . 'pur_request')){
 }
 
 if (!$CI->db->table_exists(db_prefix() . 'items_of_vendor')) {
-    $CI->db->query('CREATE TABLE `' . db_prefix() . "items_of_vendor` (
+    $CI->db->query('CREATE TABLE IF NOT EXISTS `' . db_prefix() . "items_of_vendor` (
       `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
       `vendor_id` INT(11) NOT NULL,
       `description` TEXT NOT NULL,
@@ -1287,7 +1287,7 @@ if (!$CI->db->field_exists('add_from_type' ,db_prefix() . 'pur_invoices')){
 }
 
 if (!$CI->db->table_exists(db_prefix() . 'currency_rates')) {
-  $CI->db->query('CREATE TABLE `' . db_prefix() . "currency_rates` (
+  $CI->db->query('CREATE TABLE IF NOT EXISTS `' . db_prefix() . "currency_rates` (
     `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
     `from_currency_id` int(11) NULL,
     `from_currency_name` VARCHAR(100) NULL,
@@ -1301,7 +1301,7 @@ if (!$CI->db->table_exists(db_prefix() . 'currency_rates')) {
 }
 
 if (!$CI->db->table_exists(db_prefix() . 'currency_rate_logs')) {
-  $CI->db->query('CREATE TABLE `' . db_prefix() . "currency_rate_logs` (
+  $CI->db->query('CREATE TABLE IF NOT EXISTS `' . db_prefix() . "currency_rate_logs` (
     `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
     `from_currency_id` int(11) NULL,
     `from_currency_name` VARCHAR(100) NULL,
@@ -1364,7 +1364,7 @@ if (!$CI->db->field_exists('shipping_note' ,db_prefix() . 'pur_orders')){
 
 
 if (!$CI->db->table_exists(db_prefix() . 'wh_order_returns')) {
-  $CI->db->query('CREATE TABLE `' . db_prefix() . "wh_order_returns` (
+  $CI->db->query('CREATE TABLE IF NOT EXISTS `' . db_prefix() . "wh_order_returns` (
 
     `id` INT(11) NOT NULL AUTO_INCREMENT,
     `rel_id` INT(11) NULL,
@@ -1431,7 +1431,7 @@ if ($CI->db->field_exists('total_after_discount' ,db_prefix() . 'wh_order_return
 
 
 if (!$CI->db->table_exists(db_prefix() . 'wh_order_return_details')) {
-  $CI->db->query('CREATE TABLE `' . db_prefix() . "wh_order_return_details` (
+  $CI->db->query('CREATE TABLE IF NOT EXISTS `' . db_prefix() . "wh_order_return_details` (
 
     `id` INT(11) NOT NULL AUTO_INCREMENT,
     `order_return_id` INT(11) NOT NULL,
@@ -1490,7 +1490,7 @@ if (!$CI->db->field_exists('status' ,db_prefix() . 'wh_order_returns')) {
 }
 
 if (!$CI->db->table_exists(db_prefix() . 'pur_activity_log')) {
-    $CI->db->query('CREATE TABLE `' . db_prefix() .'pur_activity_log` (
+    $CI->db->query('CREATE TABLE IF NOT EXISTS `' . db_prefix() .'pur_activity_log` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
   `rel_id` INT(11) NOT NULL,
   `rel_type` VARCHAR(45) NOT NULL,
@@ -1501,7 +1501,7 @@ if (!$CI->db->table_exists(db_prefix() . 'pur_activity_log')) {
 }
 
 if (!$CI->db->table_exists(db_prefix() . 'wh_goods_delivery_activity_log')) {
-  $CI->db->query('CREATE TABLE `' . db_prefix() . "wh_goods_delivery_activity_log` (
+  $CI->db->query('CREATE TABLE IF NOT EXISTS `' . db_prefix() . "wh_goods_delivery_activity_log` (
     `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
     `rel_id` int NULL ,
     `rel_type` varchar(100) NULL ,
@@ -1516,7 +1516,7 @@ if (!$CI->db->table_exists(db_prefix() . 'wh_goods_delivery_activity_log')) {
 }
 
 if (!$CI->db->table_exists(db_prefix() . 'pur_invoice_details')) {
-    $CI->db->query('CREATE TABLE `' . db_prefix() .'pur_invoice_details` (
+    $CI->db->query('CREATE TABLE IF NOT EXISTS `' . db_prefix() .'pur_invoice_details` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
   `pur_invoice` INT(11) NOT NULL,
   `item_code` VARCHAR(100) NULL,
@@ -1569,7 +1569,7 @@ if (!$CI->db->field_exists('return_policies' ,db_prefix() . 'pur_vendor')) {
 }
 
 if (!$CI->db->table_exists(db_prefix() . 'wh_order_returns_refunds')) {
-    $CI->db->query('CREATE TABLE `' . db_prefix() . "wh_order_returns_refunds` (
+    $CI->db->query('CREATE TABLE IF NOT EXISTS `' . db_prefix() . "wh_order_returns_refunds` (
       `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
       `order_return_id` INT(11) NULL,
       `staff_id` INT(11) NULL,
@@ -2027,7 +2027,7 @@ add_option('pur_can_select_approvers_on_purchase_order_form', '0');
 add_option('pur_can_select_approvers_on_faf_form', '0');
 
 if (!$CI->db->table_exists(db_prefix() . 'pur_faf_requests')) {
-    $CI->db->query('CREATE TABLE `' . db_prefix() . "pur_faf_requests` (
+    $CI->db->query('CREATE TABLE IF NOT EXISTS `' . db_prefix() . "pur_faf_requests` (
       `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
       `vendor_id` INT(11) NULL,
       `reference_number` TEXT NULL,
@@ -2074,7 +2074,229 @@ create_email_template('Purchase Invoice About to Expire', '<span style=\"font-si
   </span><br /><br />', 'purchase_order', 'Purchase Invoice About to Expire (Sent to staff)', 'purchase-invoice-about-to-expire');
 
 if (!$CI->db->field_exists('expire_notify' ,db_prefix() . 'pur_invoices')) {
-    $CI->db->query("ALTER TABLE `" . db_prefix() . "pur_invoices`
-      ADD COLUMN `expire_notify` tinyint(1) NOT NULL DEFAULT '0'
-      ");
-  }
+  $CI->db->query("ALTER TABLE `" . db_prefix() . "pur_invoices`
+    ADD COLUMN `expire_notify` tinyint(1) NOT NULL DEFAULT '0'
+  ");
+}
+
+$CI->db->from(db_prefix() . 'ware_unit_type');
+$ware_unit_type = $CI->db->count_all_results();
+if ($ware_unit_type == 0) {
+  $ware_unit_type_data = [
+      ['unit_name' => 'Nos', 'display' => 1],
+      ['unit_name' => 'Numbers', 'display' => 1],
+      ['unit_name' => 'Kg', 'display' => 1],
+      ['unit_name' => 'Bags', 'display' => 1],
+      ['unit_name' => 'Cft', 'display' => 1],
+      ['unit_name' => 'Ton', 'display' => 1],
+      ['unit_name' => 'Brass', 'display' => 1],
+      ['unit_name' => 'Sqft', 'display' => 1],
+      ['unit_name' => 'Km', 'display' => 1],
+      ['unit_name' => 'Meter', 'display' => 1],
+      ['unit_name' => 'Box', 'display' => 1],
+      ['unit_name' => 'Ft', 'display' => 1],
+      ['unit_name' => 'Cum', 'display' => 1],
+      ['unit_name' => 'Quintal', 'display' => 1],
+      ['unit_name' => 'Mm', 'display' => 1],
+      ['unit_name' => 'Sqm', 'display' => 1],
+      ['unit_name' => 'Kilolitre', 'display' => 1],
+      ['unit_name' => 'Gram', 'display' => 1],
+      ['unit_name' => 'Cm', 'display' => 1],
+      ['unit_name' => 'Lb', 'display' => 1],
+      ['unit_name' => 'Trips', 'display' => 1],
+      ['unit_name' => 'Unit', 'display' => 1],
+      ['unit_name' => 'Hours', 'display' => 1],
+      ['unit_name' => 'Liter', 'display' => 1],
+      ['unit_name' => 'Bundle', 'display' => 1],
+      ['unit_name' => 'Drum', 'display' => 1],
+      ['unit_name' => 'Gallons', 'display' => 1],
+      ['unit_name' => 'Pac', 'display' => 1],
+      ['unit_name' => 'Pair', 'display' => 1],
+      ['unit_name' => 'Pcs', 'display' => 1],
+      ['unit_name' => 'Roll', 'display' => 1],
+      ['unit_name' => 'Set', 'display' => 1],
+      ['unit_name' => 'Sheet', 'display' => 1],
+      ['unit_name' => 'In', 'display' => 1],
+      ['unit_name' => 'Rft', 'display' => 1],
+      ['unit_name' => 'Rmt', 'display' => 1],
+      ['unit_name' => 'LS', 'display' => 1],
+      ['unit_name' => 'Days', 'display' => 1],
+      ['unit_name' => 'R/O', 'display' => 1],
+      ['unit_name' => 'Metric Ton (1000 Kg)', 'display' => 1],
+      ['unit_name' => 'Cubic meter', 'display' => 1],
+  ];
+  $CI->db->insert_batch(db_prefix() . 'ware_unit_type', $ware_unit_type_data);
+}
+
+$CI->db->from(db_prefix() . 'items_groups');
+$items_groups_count = $CI->db->count_all_results();
+if ($items_groups_count == 0) {
+  $items_groups_data = [
+    ['name' => 'Audio and Video Equipment', 'commodity_group_code' => 'AV', 'order' => 1, 'display' => 1],
+    ['name' => 'Civil and Str Works', 'commodity_group_code' => 'CVL', 'order' => 2, 'display' => 1],
+    ['name' => 'Consultant', 'commodity_group_code' => 'CON', 'order' => 3, 'display' => 1],
+    ['name' => 'Elevators', 'commodity_group_code' => 'LIF', 'order' => 4, 'display' => 1],
+    ['name' => 'External works', 'commodity_group_code' => 'EXT', 'order' => 5, 'display' => 1],
+    ['name' => 'Facade works', 'commodity_group_code' => 'FCD', 'order' => 6, 'display' => 1],
+    ['name' => 'Interior Works and FFE', 'commodity_group_code' => 'ID', 'order' => 7, 'display' => 1],
+    ['name' => 'IT Active & EPABX', 'commodity_group_code' => 'IT', 'order' => 8, 'display' => 1],
+    ['name' => 'Kitchen', 'commodity_group_code' => 'KIT', 'order' => 9, 'display' => 1],
+    ['name' => 'MEP Works', 'commodity_group_code' => 'MEP', 'order' => 10, 'display' => 1],
+    ['name' => 'OS&E', 'commodity_group_code' => 'OSE', 'order' => 11, 'display' => 1],
+    ['name' => 'Other Equipments', 'commodity_group_code' => 'EQP', 'order' => 12, 'display' => 1],
+    ['name' => 'Pool waterbody plant', 'commodity_group_code' => 'POL', 'order' => 13, 'display' => 1],
+    ['name' => 'Site Attendance', 'commodity_group_code' => 'SA', 'order' => 14, 'display' => 1],
+    ['name' => 'Mock Up Room (Off Site)', 'commodity_group_code' => 'MUR', 'order' => 15, 'display' => 1],
+    ['name' => 'Management Fees', 'commodity_group_code' => 'MF', 'order' => 17, 'display' => 1],
+    ['name' => 'Contingency', 'commodity_group_code' => 'CONT', 'order' => 18, 'display' => 1],
+    ['name' => 'Debit Note', 'commodity_group_code' => 'Debit', 'order' => 19, 'display' => 1],
+  ];
+  $CI->db->insert_batch(db_prefix() . 'items_groups', $items_groups_data);
+}
+
+$CI->db->from(db_prefix() . 'wh_sub_group');
+$wh_sub_group_count = $CI->db->count_all_results();
+if ($wh_sub_group_count == 0) {
+  $wh_sub_group_data = [
+    ['sub_group_code' => 'Gro', 'sub_group_name' => 'Groundworks and earthworks', 'order' => 0, 'display' => 1],
+    ['sub_group_code' => 'Rem', 'sub_group_name' => 'Remediation, repair and renovation', 'order' => 0, 'display' => 1],
+    ['sub_group_code' => 'Sub', 'sub_group_name' => 'Substructure', 'order' => 0, 'display' => 1],
+    ['sub_group_code' => 'Fou', 'sub_group_name' => 'Foundations & RCC Works', 'order' => 0, 'display' => 1],
+    ['sub_group_code' => 'Sup', 'sub_group_name' => 'Superstructure', 'order' => 0, 'display' => 1],
+    ['sub_group_code' => 'Wal', 'sub_group_name' => 'Walls', 'order' => 0, 'display' => 1],
+    ['sub_group_code' => 'Ext', 'sub_group_name' => 'External walls', 'order' => 0, 'display' => 1],
+    ['sub_group_code' => 'Ext', 'sub_group_name' => 'External walls below ground', 'order' => 0, 'display' => 1],
+    ['sub_group_code' => 'Int', 'sub_group_name' => 'Internal walls', 'order' => 0, 'display' => 1],
+    ['sub_group_code' => 'Par', 'sub_group_name' => 'Parapet walls', 'order' => 0, 'display' => 1],
+    ['sub_group_code' => 'Doo', 'sub_group_name' => 'Doors', 'order' => 0, 'display' => 1],
+    ['sub_group_code' => 'Gat', 'sub_group_name' => 'Gates', 'order' => 0, 'display' => 1],
+    ['sub_group_code' => 'Lou', 'sub_group_name' => 'Louvres', 'order' => 0, 'display' => 1],
+    ['sub_group_code' => 'Win', 'sub_group_name' => 'Windows', 'order' => 0, 'display' => 1],
+    ['sub_group_code' => 'Bar', 'sub_group_name' => 'Barriers', 'order' => 0, 'display' => 1],
+    ['sub_group_code' => 'Fen', 'sub_group_name' => 'Fences', 'order' => 0, 'display' => 1],
+    ['sub_group_code' => 'Fla', 'sub_group_name' => 'Flat roofs', 'order' => 0, 'display' => 1],
+    ['sub_group_code' => 'Pit', 'sub_group_name' => 'Pitched roofs', 'order' => 0, 'display' => 1],
+    ['sub_group_code' => 'Flo', 'sub_group_name' => 'Floors', 'order' => 0, 'display' => 1],
+    ['sub_group_code' => 'Cei', 'sub_group_name' => 'Ceilings', 'order' => 0, 'display' => 1],
+    ['sub_group_code' => 'Sof', 'sub_group_name' => 'Soffits', 'order' => 0, 'display' => 1],
+    ['sub_group_code' => 'Dec', 'sub_group_name' => 'Decks', 'order' => 0, 'display' => 1],
+    ['sub_group_code' => 'Pav', 'sub_group_name' => 'Pavements', 'order' => 0, 'display' => 1],
+    ['sub_group_code' => 'Sta', 'sub_group_name' => 'Stairs', 'order' => 0, 'display' => 1],
+    ['sub_group_code' => 'Ram', 'sub_group_name' => 'Ramps', 'order' => 0, 'display' => 1],
+    ['sub_group_code' => 'Tre', 'sub_group_name' => 'Trenches', 'order' => 0, 'display' => 1],
+    ['sub_group_code' => 'Tun', 'sub_group_name' => 'Tunnels and shafts', 'order' => 0, 'display' => 1],
+    ['sub_group_code' => 'Sig', 'sub_group_name' => 'Signage', 'order' => 0, 'display' => 1],
+    ['sub_group_code' => 'Fit', 'sub_group_name' => 'Fittings', 'order' => 0, 'display' => 1],
+    ['sub_group_code' => 'Cul', 'sub_group_name' => 'Cultural elements', 'order' => 0, 'display' => 1],
+    ['sub_group_code' => 'Art', 'sub_group_name' => 'Artworks', 'order' => 0, 'display' => 1],
+    ['sub_group_code' => 'Fur', 'sub_group_name' => 'Furnishings', 'order' => 0, 'display' => 1],
+    ['sub_group_code' => 'Equ', 'sub_group_name' => 'Equipment', 'order' => 0, 'display' => 1],
+    ['sub_group_code' => 'Sof', 'sub_group_name' => 'Software', 'order' => 0, 'display' => 1],
+    ['sub_group_code' => 'Int', 'sub_group_name' => 'Interior', 'order' => 0, 'display' => 1],
+    ['sub_group_code' => 'PROF', 'sub_group_name' => 'Professional Consultancy Services', 'order' => 0, 'display' => 1],
+    ['sub_group_code' => 'REG', 'sub_group_name' => 'Regulatory Approvals and Permissions', 'order' => 0, 'display' => 1],
+    ['sub_group_code' => 'DSG', 'sub_group_name' => 'Design Management', 'order' => 0, 'display' => 1],
+    ['sub_group_code' => 'STF', 'sub_group_name' => 'site workforce', 'order' => 0, 'display' => 1],
+    ['sub_group_code' => 'EXT-F', 'sub_group_name' => 'External Furniture', 'order' => 0, 'display' => 1],
+    ['sub_group_code' => 'Fireplace', 'sub_group_name' => 'Fireplace', 'order' => 0, 'display' => 1],
+    ['sub_group_code' => 'Temple', 'sub_group_name' => 'Temple', 'order' => 0, 'display' => 1],
+    ['sub_group_code' => 'Wrd', 'sub_group_name' => 'Wardrobe', 'order' => 0, 'display' => 1],
+    ['sub_group_code' => 'SLD', 'sub_group_name' => 'Sliding Doors', 'order' => 0, 'display' => 1],
+    ['sub_group_code' => 'SLW', 'sub_group_name' => 'Sliding windows', 'order' => 0, 'display' => 1],
+    ['sub_group_code' => 'Rug', 'sub_group_name' => 'Rugs', 'order' => 0, 'display' => 1],
+    ['sub_group_code' => 'DL', 'sub_group_name' => 'Decorative Lights', 'order' => 0, 'display' => 1],
+    ['sub_group_code' => 'Furn.', 'sub_group_name' => 'Loose Furniture', 'order' => 0, 'display' => 1],
+    ['sub_group_code' => 'Cur', 'sub_group_name' => 'Curtains', 'order' => 0, 'display' => 1],
+    ['sub_group_code' => 'Upl', 'sub_group_name' => 'Upholstery', 'order' => 0, 'display' => 1],
+    ['sub_group_code' => 'Cus', 'sub_group_name' => 'Cushions', 'order' => 0, 'display' => 1],
+    ['sub_group_code' => 'PLB', 'sub_group_name' => 'Plumbing Fixtures', 'order' => 0, 'display' => 1],
+    ['sub_group_code' => 'Mir', 'sub_group_name' => 'Mirror', 'order' => 0, 'display' => 1],
+    ['sub_group_code' => 'VAN', 'sub_group_name' => 'Vanity', 'order' => 0, 'display' => 1],
+  ];
+  $CI->db->insert_batch(db_prefix() . 'wh_sub_group', $wh_sub_group_data);
+}
+
+$CI->db->from(db_prefix() . 'pur_vendor_cate');
+$vendor_cate_count = $CI->db->count_all_results();
+if ($vendor_cate_count == 0) {
+  $vendor_cate_data = [
+    ['category_name' => 'Automation'],
+    ['category_name' => 'AV'],
+    ['category_name' => 'Equipments'],
+    ['category_name' => 'Bar Equipments'],
+    ['category_name' => 'Basement'],
+    ['category_name' => 'Drainage/Manhole/Chambers'],
+    ['category_name' => 'Basement Waterproofing System'],
+    ['category_name' => 'Building Material'],
+    ['category_name' => 'Canopies'],
+    ['category_name' => 'CurtainTracks/Blinds'],
+    ['category_name' => 'Decorative lights'],
+    ['category_name' => 'Doors & Ironmogery'],
+    ['category_name' => 'Drainage/Manhole covers'],
+    ['category_name' => 'Electrical Equipments'],
+    ['category_name' => 'Equipment’s'],
+    ['category_name' => 'External Cladding Material'],
+    ['category_name' => 'ExternalPlanting/Turf/Irrigation System'],
+    ['category_name' => 'Facade cleaning System'],
+    ['category_name' => 'Fire Life Safety'],
+    ['category_name' => 'Flooring Finishes'],
+    ['category_name' => 'Furniture/Chair/Upholestry'],
+    ['category_name' => 'Gas Bank'],
+    ['category_name' => 'Gate/Fencing/Screens/Barrier'],
+    ['category_name' => 'Glass & Metal items'],
+    ['category_name' => 'HVAC Equipments'],
+    ['category_name' => 'Interior Finishes'],
+    ['category_name' => 'IT/Control System/Security'],
+    ['category_name' => 'Kitchen Equipments'],
+    ['category_name' => 'Laundry'],
+    ['category_name' => 'Lift'],
+    ['category_name' => 'Light fittings'],
+    ['category_name' => 'Lockers'],
+    ['category_name' => 'Loose Carpet/Rug'],
+    ['category_name' => 'Organic Waste Decomposter'],
+    ['category_name' => 'Pantry Equipments/Fittings'],
+    ['category_name' => 'Paving/Curb/External Finishes'],
+    ['category_name' => 'Plumbing Equipments'],
+    ['category_name' => 'Sanitary Fittings and Fixtures'],
+    ['category_name' => 'Signages Sliding'],
+    ['category_name' => 'Folding Partition System'],
+    ['category_name' => 'Soft furnishing'],
+    ['category_name' => 'Softscape'],
+    ['category_name' => 'SPA equipment'],
+    ['category_name' => 'Specialist Equipment'],
+    ['category_name' => 'Staircase'],
+    ['category_name' => 'STP Equipment'],
+    ['category_name' => 'Street Furniture & Lighting'],
+    ['category_name' => 'Swimming pool equipment'],
+    ['category_name' => 'Switch Socket'],
+    ['category_name' => 'UPS/Battery Bank'],
+    ['category_name' => 'Wall coverings'],
+    ['category_name' => 'Waterproofing system'],
+    ['category_name' => 'Windows&Glazing system'],
+    ['category_name' => 'Work of Art'],
+    ['category_name' => 'Scaffolding Work'],
+    ['category_name' => 'Tailor'],
+    ['category_name' => 'Hirring Of EICHER'],
+    ['category_name' => 'Shed'],
+    ['category_name' => 'Barrication'],
+    ['category_name' => 'JCB'],
+    ['category_name' => 'HYDRA'],
+    ['category_name' => 'Tracter Trolly'],
+    ['category_name' => 'Manpower'],
+    ['category_name' => 'Supply Of Material Work'],
+    ['category_name' => 'Hirring Of JCB'],
+    ['category_name' => 'Hirring Of Tractor Trolly'],
+    ['category_name' => 'Manpower Supply'],
+    ['category_name' => 'Hiring Of Tracter'],
+    ['category_name' => 'Hirring Of Forklift'],
+    ['category_name' => 'Hirring Of Car'],
+    ['category_name' => 'Hirring Of Land Rent'],
+    ['category_name' => 'MS Fabrication Work'],
+    ['category_name' => 'Security Manpower Work'],
+    ['category_name' => 'Deep Cleaning Work'],
+    ['category_name' => 'Packing Work'],
+    ['category_name' => 'Consultant'],
+    ['category_name' => 'D. G. Hiring'],
+  ];
+  $CI->db->insert_batch(db_prefix() . 'pur_vendor_cate', $vendor_cate_data);
+}
