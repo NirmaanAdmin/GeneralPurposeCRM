@@ -88,6 +88,7 @@ class AdminController extends App_Controller
         ensure_manufacturing_mysql_runned();
         ensure_menu_setup_mysql_runned();
         ensure_theme_style_mysql_runned();
+        ensure_document_management_mysql_runned();
 
         /**
         * Autoloaded view variables
